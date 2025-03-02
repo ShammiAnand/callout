@@ -105,49 +105,6 @@ PocketBase admin UI will be available at <http://localhost:8090/_/>
    - Add Stripe API keys to the .env file
    - Configure webhook endpoints for payment notifications
 
-## 🧪 Testing
-
-```bash
-# Run tests
-npm test
-
-# Run end-to-end tests
-npm run test:e2e
-```
-
-## 🚢 Deployment
-
-### Pocketbase Deployment
-
-1. **Prepare EC2 instance**
-
-```bash
-# Use the setup script
-./infrastructure/aws/setup_ec2.sh
-```
-
-2. **Deploy Pocketbase**
-
-```bash
-# Deploy using the deployment script
-./infrastructure/aws/deploy_pocketbase.sh
-```
-
-### Frontend Deployment
-
-1. **Build the frontend**
-
-```bash
-npm run build
-```
-
-2. **Deploy to S3/CloudFront**
-
-```bash
-# Use the deployment script
-./infrastructure/aws/deploy_frontend.sh
-```
-
 ## 💳 Credit System
 
 Credits work as follows:
