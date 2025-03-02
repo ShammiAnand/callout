@@ -15,7 +15,7 @@ CallOut is a Progressive Web App for making affordable international calls direc
 
 ## 🚀 Tech Stack
 
-- **Frontend**: React (with Vite), TailwindCSS
+- **Frontend**: React (with Vite), TypeScript, TailwindCSS, Shadcn UI
 - **Backend**: Pocketbase (single binary backend solution)
 - **Calling API**: Plivo Browser SDK
 - **Payments**: Stripe Elements
@@ -25,41 +25,26 @@ CallOut is a Progressive Web App for making affordable international calls direc
 
 ```
 callout/
-├── frontend/                # React application
-│   ├── public/
-│   │   ├── favicon.ico
-│   │   ├── manifest.json    # PWA manifest
-│   │   └── service-worker.js
-│   │
-│   ├── src/
-│   │   ├── components/      # React components
-│   │   ├── hooks/           # Custom React hooks
-│   │   ├── pages/           # Page components
-│   │   ├── services/        # API services
-│   │   ├── utils/           # Helper functions
-│   │   ├── App.jsx          # Main application
-│   │   └── main.jsx         # Entry point
-│   │
-│   ├── package.json
-│   └── vite.config.js
-│
-├── pocketbase/              # Pocketbase configuration
-│   ├── pb_migrations/       # Database migrations
-│   ├── pb_hooks/            # Pocketbase hooks
-│   └── .env.example         # Environment variables template
-│
-├── infrastructure/          # Deployment scripts
-│   ├── aws/                 # AWS setup scripts
-│   ├── docker/              # Docker configurations
-│   └── ci/                  # CI/CD pipeline configs
-│
-├── docs/                    # Documentation
-│   ├── api/                 # API documentation
-│   ├── development/         # Development guides
-│   └── deployment/          # Deployment guides
-│
-├── LICENSE
-└── README.md
+├── pocketbase/           # PocketBase executable and schema
+├── public/               # Public assets
+├── src/
+│   ├── assets/           # Static assets
+│   ├── components/       # React components
+│   │   ├── auth/         # Authentication components
+│   │   └── ui/           # UI components (Shadcn)
+│   ├── context/          # React context providers
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility libraries
+│   ├── services/         # API services
+│   ├── types/            # TypeScript type definitions
+│   ├── utils/            # Utility functions
+│   ├── App.tsx           # Main App component
+│   ├── index.css         # Global styles
+│   └── main.tsx          # Entry point
+├── .env                  # Environment variables
+├── package.json          # Project dependencies
+├── tsconfig.json         # TypeScript configuration
+└── vite.config.ts        # Vite configuration
 ```
 
 ## 🚦 Getting Started
@@ -67,7 +52,7 @@ callout/
 ### Prerequisites
 
 - Node.js 16+ and npm
-- Pocketbase binary (included in releases)
+- Pocketbase binary (included in the repository)
 - Plivo account with API credentials
 - Stripe account for payment processing
 
@@ -80,60 +65,50 @@ git clone https://github.com/your-username/callout.git
 cd callout
 ```
 
-2. **Set up environment variables**
+2. **Install dependencies**
 
 ```bash
-cp pocketbase/.env.example pocketbase/.env
-# Edit .env file with your configuration
-```
-
-3. **Start Pocketbase**
-
-```bash
-cd pocketbase
-./pocketbase serve
-```
-
-Pocketbase will be available at <http://localhost:8090> with the admin UI at <http://localhost:8090/_/>
-
-4. **Install frontend dependencies**
-
-```bash
-cd frontend
 npm install
 ```
 
-5. **Start the frontend development server**
+3. **Set up PocketBase schema**
 
 ```bash
-npm run dev
+# Import the schema into PocketBase
+npm run pb:import
+```
+
+4. **Start the development servers**
+
+```bash
+# Start both PocketBase and Vite servers
+npm run dev:all
 ```
 
 The application will be available at <http://localhost:5173>
+PocketBase admin UI will be available at <http://localhost:8090/_/>
 
 ### Initial Configuration
 
 1. **Set up Pocketbase collections**
 
    - Navigate to <http://localhost:8090/_/> and create an admin account
-   - Import the collection schemas from `pocketbase/pb_migrations`
-   - Configure authentication providers under Settings
+   - The schema should already be imported, but you can verify the collections
 
 2. **Configure Plivo credentials**
 
-   - Add your Plivo App ID and credentials to the environment variables
+   - Add your Plivo App ID and credentials to the .env file
    - Test calling functionality with a test number
 
 3. **Set up Stripe**
 
-   - Add Stripe API keys to environment variables
+   - Add Stripe API keys to the .env file
    - Configure webhook endpoints for payment notifications
 
 ## 🧪 Testing
 
 ```bash
-# Run frontend tests
-cd frontend
+# Run tests
 npm test
 
 # Run end-to-end tests
@@ -163,7 +138,6 @@ npm run test:e2e
 1. **Build the frontend**
 
 ```bash
-cd frontend
 npm run build
 ```
 
