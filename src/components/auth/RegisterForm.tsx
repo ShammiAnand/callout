@@ -26,10 +26,10 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
   }, []);
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <div className="mb-6 text-center">
+    <div className="card max-w-md mx-auto shadow-lg">
+      <div className="mb-8 text-center">
         <h2 className="text-2xl font-bold text-gray-900">Create an account</h2>
-        <p className="text-sm text-gray-500 mt-1">Enter your details to create a new account</p>
+        <p className="text-sm text-gray-500 mt-2">Enter your details to create a new account</p>
         {serverStatus === 'offline' && (
           <div className="mt-4 p-3 bg-amber-50 border border-amber-200 text-amber-700 rounded-md text-sm">
             ⚠️ PocketBase server appears to be offline. Please make sure it's running.
@@ -37,9 +37,9 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
         )}
       </div>
       
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-2">
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="name" className="font-medium">
             Name
           </label>
           <input
@@ -50,12 +50,12 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full"
           />
         </div>
         
         <div className="space-y-2">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="font-medium">
             Email
           </label>
           <input
@@ -66,12 +66,12 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
             value={form.email}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full"
           />
         </div>
         
         <div className="space-y-2">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="password" className="font-medium">
             Password
           </label>
           <input
@@ -82,12 +82,12 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
             value={form.password}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full"
           />
         </div>
         
         <div className="space-y-2">
-          <label htmlFor="passwordConfirm" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="passwordConfirm" className="font-medium">
             Confirm Password
           </label>
           <input
@@ -98,7 +98,7 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
             value={form.passwordConfirm}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full"
           />
         </div>
         
@@ -110,13 +110,13 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
         
         <button 
           type="submit" 
-          className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full btn btn-primary py-3"
           disabled={isLoading || serverStatus === 'offline'}
         >
           {isLoading ? "Creating account..." : "Register"}
         </button>
         
-        <div className="text-sm text-center text-gray-500">
+        <div className="text-sm text-center text-gray-500 pt-2">
           Already have an account?{" "}
           <a href="/login" className="text-blue-600 hover:text-blue-800 font-medium">
             Login

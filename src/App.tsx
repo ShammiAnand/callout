@@ -47,15 +47,13 @@ function Home() {
 
   if (user) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome back, {user.name}!</h1>
-          <p className="text-gray-500 mt-2">You are logged in to CallOut</p>
-        </div>
-        <div className="flex justify-center">
+      <div className="container mx-auto px-6 py-12">
+        <div className="card max-w-2xl mx-auto text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Welcome back, {user.name}!</h1>
+          <p className="text-gray-500 mb-8">You are logged in to CallOut</p>
           <button 
             onClick={() => navigate('/profile')}
-            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium transition-colors"
+            className="btn btn-primary"
           >
             View Profile
           </button>
@@ -65,24 +63,46 @@ function Home() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to CallOut</h1>
-        <p className="text-xl text-gray-500">The international calling service for everyone</p>
-      </div>
-      <div className="flex justify-center gap-4">
-        <button 
-          onClick={() => navigate('/login')}
-          className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium transition-colors"
-        >
-          Login
-        </button>
-        <button 
-          onClick={() => navigate('/register')}
-          className="px-6 py-3 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 font-medium transition-colors"
-        >
-          Register
-        </button>
+    <div className="container mx-auto px-6 py-12">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-6">Welcome to CallOut</h1>
+          <p className="text-xl text-gray-600 mb-10">The international calling service for everyone</p>
+          <div className="flex justify-center gap-6">
+            <button 
+              onClick={() => navigate('/login')}
+              className="btn btn-primary px-8 py-3 text-lg"
+            >
+              Login
+            </button>
+            <button 
+              onClick={() => navigate('/register')}
+              className="btn btn-secondary px-8 py-3 text-lg"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+          <div className="card text-center hover:shadow-lg transition-shadow">
+            <div className="text-blue-500 text-5xl mb-6">💰</div>
+            <h3 className="text-xl font-semibold mb-3">Affordable Rates</h3>
+            <p className="text-gray-600">Make international calls at a fraction of carrier costs</p>
+          </div>
+          
+          <div className="card text-center hover:shadow-lg transition-shadow">
+            <div className="text-blue-500 text-5xl mb-6">🌐</div>
+            <h3 className="text-xl font-semibold mb-3">Global Coverage</h3>
+            <p className="text-gray-600">Call any country with reliable connections</p>
+          </div>
+          
+          <div className="card text-center hover:shadow-lg transition-shadow">
+            <div className="text-blue-500 text-5xl mb-6">📱</div>
+            <h3 className="text-xl font-semibold mb-3">Use Any Device</h3>
+            <p className="text-gray-600">Works on desktop, tablet, or mobile browser</p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -99,21 +119,21 @@ function AppContent() {
   return (
     <>
       <Navbar navigate={navigate} />
-      <main className="min-h-[calc(100vh-64px)] py-8 bg-gray-50">
+      <main className="min-h-[calc(100vh-64px)] bg-gray-50 py-8">
         {path === '/' && <Home />}
         {path === '/login' && (
-          <div className="container mx-auto px-4 py-8">
+          <div className="container mx-auto px-6 py-8">
             <LoginForm onSuccess={handleAuthSuccess} />
           </div>
         )}
         {path === '/register' && (
-          <div className="container mx-auto px-4 py-8">
+          <div className="container mx-auto px-6 py-8">
             <RegisterForm onSuccess={handleAuthSuccess} />
           </div>
         )}
         {path === '/profile' && (
           <ProtectedRoute>
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-6 py-8">
               <UserProfile />
             </div>
           </ProtectedRoute>
@@ -126,7 +146,7 @@ function AppContent() {
 export default function App() {
   return (
     <AuthProvider>
-      <div className="min-h-screen bg-gray-50 text-gray-900">
+      <div className="min-h-screen bg-white">
         <AppContent />
       </div>
     </AuthProvider>

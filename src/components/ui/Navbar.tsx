@@ -13,59 +13,52 @@ export function Navbar({ navigate }: NavbarProps) {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 shadow-sm">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center">
+    <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex justify-between items-center">
           <h1 
-            className="text-2xl font-bold text-gray-900 cursor-pointer" 
+            className="text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors" 
             onClick={() => navigate('/')}
           >
             {import.meta.env.VITE_APP_NAME || 'CallOut'}
           </h1>
-        </div>
-        <nav>
-          <ul className="flex items-center space-x-6">
-            {user ? (
-              <>
-                <li>
+          
+          <nav>
+            <div className="flex items-center space-x-4">
+              {user ? (
+                <>
                   <button 
-                    className="text-gray-600 hover:text-gray-900 font-medium" 
                     onClick={() => navigate('/profile')}
+                    className="btn btn-secondary"
                   >
                     Profile
                   </button>
-                </li>
-                <li>
                   <button 
-                    className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 text-gray-700 font-medium transition-colors" 
                     onClick={handleLogout}
+                    className="btn btn-outline"
                   >
                     Logout
                   </button>
-                </li>
-              </>
-            ) : (
-              <>
-                <li>
+                </>
+              ) : (
+                <>
                   <button 
-                    className="text-gray-600 hover:text-gray-900 font-medium" 
                     onClick={() => navigate('/login')}
+                    className="btn btn-secondary"
                   >
                     Login
                   </button>
-                </li>
-                <li>
                   <button 
-                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium transition-colors" 
                     onClick={() => navigate('/register')}
+                    className="btn btn-primary"
                   >
                     Register
                   </button>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
+                </>
+              )}
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
   );
