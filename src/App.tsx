@@ -10,14 +10,14 @@ import { ProtectedRoute } from './components/auth/ProtectedRoute';
 // Simple router component
 function useRouter() {
   const [path, setPath] = useState(window.location.pathname);
-  
+
   useEffect(() => {
     const handleLocationChange = () => {
       setPath(window.location.pathname);
     };
 
     window.addEventListener('popstate', handleLocationChange);
-    
+
     return () => {
       window.removeEventListener('popstate', handleLocationChange);
     };
@@ -51,7 +51,7 @@ function Home() {
         <div className="card max-w-2xl mx-auto text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Welcome back, {user.name}!</h1>
           <p className="text-gray-500 mb-8">You are logged in to CallOut</p>
-          <button 
+          <button
             onClick={() => navigate('/profile')}
             className="btn btn-primary"
           >
@@ -69,13 +69,13 @@ function Home() {
           <h1 className="text-4xl font-bold text-gray-900 mb-6">Welcome to CallOut</h1>
           <p className="text-xl text-gray-600 mb-10">The international calling service for everyone</p>
           <div className="flex justify-center gap-6">
-            <button 
+            <button
               onClick={() => navigate('/login')}
               className="btn btn-primary px-8 py-3 text-lg"
             >
               Login
             </button>
-            <button 
+            <button
               onClick={() => navigate('/register')}
               className="btn btn-secondary px-8 py-3 text-lg"
             >
@@ -83,20 +83,20 @@ function Home() {
             </button>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
           <div className="card text-center hover:shadow-lg transition-shadow">
             <div className="text-blue-500 text-5xl mb-6">💰</div>
             <h3 className="text-xl font-semibold mb-3">Affordable Rates</h3>
             <p className="text-gray-600">Make international calls at a fraction of carrier costs</p>
           </div>
-          
+
           <div className="card text-center hover:shadow-lg transition-shadow">
             <div className="text-blue-500 text-5xl mb-6">🌐</div>
             <h3 className="text-xl font-semibold mb-3">Global Coverage</h3>
             <p className="text-gray-600">Call any country with reliable connections</p>
           </div>
-          
+
           <div className="card text-center hover:shadow-lg transition-shadow">
             <div className="text-blue-500 text-5xl mb-6">📱</div>
             <h3 className="text-xl font-semibold mb-3">Use Any Device</h3>
